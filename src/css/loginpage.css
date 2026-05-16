@@ -1,0 +1,430 @@
+.login-page {
+  width: 100%;
+
+  min-height: 100vh;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 520px;
+
+  background: #ffffff;
+}
+
+/* ==================================================
+   LEFT SIDE
+================================================== */
+
+.login-left {
+  position: relative;
+
+  overflow: hidden;
+
+  background-image:
+    url("https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1600");
+
+  background-size: cover;
+
+  background-position: center;
+}
+
+.login-left::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.72),
+      rgba(0,0,0,0.18)
+    );
+}
+
+/* OVERLAY */
+
+.login-overlay {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  padding: 80px;
+}
+
+.login-overlay h1 {
+  font-size: 68px;
+
+  font-weight: 500;
+
+  line-height: 1.1;
+
+  color: white;
+
+  margin-bottom: 20px;
+}
+
+.login-overlay p {
+  max-width: 520px;
+
+  font-size: 18px;
+
+  line-height: 1.9;
+
+  color: rgba(255,255,255,0.82);
+}
+
+/* ==================================================
+   RIGHT SIDE
+================================================== */
+
+.login-right {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  background: white;
+}
+
+/* LOGIN BOX */
+
+.login-box {
+  width: 100%;
+
+  max-width: 390px;
+}
+
+/* ==================================================
+   TOP
+================================================== */
+
+.login-top {
+  margin-bottom: 40px;
+}
+
+.login-top h2 {
+  font-size: 42px;
+
+  font-weight: 500;
+
+  color: #111111;
+
+  margin-bottom: 10px;
+}
+
+.login-top p {
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  color: #777777;
+}
+
+/* ==================================================
+   FORM
+================================================== */
+
+.login-form {
+  width: 100%;
+}
+
+/* ==================================================
+   INPUT
+================================================== */
+
+.login-input {
+  width: 100%;
+
+  height: 58px;
+
+  border: 1px solid #e7e7e7;
+
+  border-radius: 18px;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 18px;
+
+  margin-bottom: 18px;
+
+  transition: 0.3s ease;
+}
+
+.login-input:focus-within {
+  border-color: black;
+}
+
+.login-input input {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  font-size: 15px;
+
+  color: #111111;
+}
+
+.login-input input::placeholder {
+  color: #999999;
+}
+
+/* PASSWORD TOGGLE */
+
+.login-input button {
+  border: none;
+
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  color: #666666;
+
+  flex-shrink: 0;
+}
+
+/* ==================================================
+   SUBMIT BUTTON
+================================================== */
+
+.login-submit {
+  width: 100%;
+
+  height: 58px;
+
+  border: none;
+
+  border-radius: 18px;
+
+  background: black;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  margin-top: 8px;
+}
+
+.login-submit:hover {
+  opacity: 0.92;
+
+  transform: translateY(-1px);
+}
+
+/* ==================================================
+   DIVIDER
+================================================== */
+
+.login-divider {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 26px 0;
+
+  position: relative;
+}
+
+.login-divider::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 50%;
+
+  width: 100%;
+  height: 1px;
+
+  background: #eeeeee;
+}
+
+.login-divider span {
+  position: relative;
+
+  z-index: 2;
+
+  background: white;
+
+  padding: 0 16px;
+
+  font-size: 13px;
+
+  color: #888888;
+}
+
+/* ==================================================
+   GOOGLE BUTTON
+================================================== */
+
+.google-btn {
+  width: 100%;
+
+  height: 56px;
+
+  border: 1px solid #e7e7e7;
+
+  border-radius: 18px;
+
+  background: white;
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  color: #111111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.google-btn:hover {
+  background: #fafafa;
+}
+
+/* ==================================================
+   SWITCH
+================================================== */
+
+.login-switch {
+  margin-top: 26px;
+
+  text-align: center;
+
+  font-size: 14px;
+
+  color: #666666;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.login-switch:hover {
+  color: black;
+}
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 992px) {
+
+  .login-page {
+    grid-template-columns:
+      1fr;
+  }
+
+  /* HIDE LEFT */
+
+  .login-left {
+    display: none;
+  }
+
+  .login-right {
+    padding: 40px 20px;
+  }
+
+  .login-box {
+    max-width: 100%;
+  }
+
+}
+
+/* ==================================================
+   SMALL MOBILE
+================================================== */
+
+@media (max-width: 768px) {
+
+  .login-right {
+    min-height: 100vh;
+
+    padding: 24px 18px;
+  }
+
+  .login-top {
+    margin-bottom: 30px;
+  }
+
+  .login-top h2 {
+    font-size: 32px;
+  }
+
+  .login-top p {
+    font-size: 14px;
+  }
+
+  .login-input {
+    height: 54px;
+
+    border-radius: 16px;
+
+    padding: 0 16px;
+
+    margin-bottom: 14px;
+  }
+
+  .login-input input {
+    font-size: 14px;
+  }
+
+  .login-submit {
+    height: 54px;
+
+    border-radius: 16px;
+
+    font-size: 14px;
+  }
+
+  .google-btn {
+    height: 54px;
+
+    border-radius: 16px;
+
+    font-size: 14px;
+  }
+
+  .login-switch {
+    font-size: 13px;
+  }
+
+}

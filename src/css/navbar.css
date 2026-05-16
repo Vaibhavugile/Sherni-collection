@@ -1,0 +1,46 @@
+.topbar {
+  width: 100%;
+  height: 42px;
+
+  background: #d81b72;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+}
+
+.topbar-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.topbar-track {
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+
+  animation: marqueeMove 25s linear infinite;
+}
+
+.topbar-track span {
+  color: white;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  margin-right: 60px;
+
+  white-space: nowrap;
+}
+
+@keyframes marqueeMove {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,183 @@
+.reels-viewer {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  background: rgba(0,0,0,0.92);
+
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CLOSE */
+
+.reels-close {
+  position: absolute;
+
+  top: 22px;
+  right: 22px;
+
+  width: 48px;
+  height: 48px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.12);
+
+  backdrop-filter: blur(10px);
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 20;
+}
+
+/* SCROLL BUTTONS */
+
+.reels-scroll-buttons {
+  position: absolute;
+
+  right: 40px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+
+  z-index: 20;
+}
+
+.reels-scroll-buttons button {
+  width: 54px;
+  height: 54px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  background: rgba(255,255,255,0.12);
+
+  backdrop-filter: blur(10px);
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+/* REELS CONTAINER */
+
+.reels-container {
+  width: 100%;
+  height: 100vh;
+
+  overflow-y: auto;
+
+  scroll-snap-type: y mandatory;
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+}
+
+.reels-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* EACH REEL */
+
+.reel-slide {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  scroll-snap-align: start;
+
+  position: relative;
+}
+
+/* VIDEO */
+
+.reel-slide video {
+  width: 380px;
+  height: 92vh;
+
+  object-fit: cover;
+
+  border-radius: 26px;
+
+  background: black;
+}
+
+/* PLACEHOLDER */
+
+.reel-placeholder {
+  width: 380px;
+  height: 92vh;
+
+  border-radius: 26px;
+
+  background: #1b1b1b;
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .reels-close {
+    top: 14px;
+    right: 14px;
+
+    width: 42px;
+    height: 42px;
+  }
+
+  .reels-scroll-buttons {
+    display: none;
+  }
+
+  .reel-slide video {
+    width: 100%;
+    height: 100vh;
+
+    border-radius: 0;
+  }
+
+  .reel-placeholder {
+    width: 100%;
+    height: 100vh;
+
+    border-radius: 0;
+  }
+
+}

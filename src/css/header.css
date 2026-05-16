@@ -1,0 +1,187 @@
+.header {
+  width: 100%;
+
+  height: 95px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 45px;
+
+  border-bottom: 1px solid #e8e8e8;
+
+  background: white;
+}
+
+/* LEFT */
+
+.header-left {
+  width: 220px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+}
+
+/* SEARCH BUTTON */
+
+.header-search-btn {
+  background: transparent;
+
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+/* CENTER LOGO */
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-logo img {
+  width: 280px;
+
+  height: 70px;
+
+  object-fit: contain;
+}
+
+/* RIGHT */
+
+.header-right {
+  width: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 22px;
+}
+
+/* LOGIN */
+
+.login-btn {
+  background: transparent;
+
+  border: none;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+/* ICON BUTTONS */
+
+.header-icon {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+
+  border: none;
+
+  cursor: pointer;
+}
+
+/* COUNT */
+
+.header-icon span {
+  position: absolute;
+
+  top: -8px;
+  right: -10px;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: black;
+  color: white;
+
+  font-size: 11px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .header {
+    height: 72px;
+
+    padding: 0 16px;
+  }
+
+  /* LEFT */
+
+  .header-left {
+    width: auto;
+  }
+
+  /* LOGO */
+
+  .header-logo img {
+    width: 170px;
+
+    height: 44px;
+  }
+
+  /* RIGHT */
+
+  .header-right {
+    width: auto;
+
+    gap: 14px;
+  }
+
+  /* HIDE LOGIN */
+
+  .login-btn {
+    display: none;
+  }
+
+  /* HIDE SEARCH */
+
+  .header-search-btn {
+    display: none;
+  }
+
+  /* SMALLER ICONS */
+
+  .header-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .header-icon span {
+    width: 16px;
+    height: 16px;
+
+    font-size: 10px;
+
+    top: -6px;
+    right: -8px;
+  }
+}

@@ -1,0 +1,193 @@
+/* PRODUCT LISTING */
+
+.admin-product-listing {
+  width: 100%;
+}
+
+/* TOP */
+
+.admin-product-listing-top {
+  margin-bottom: 30px;
+}
+
+.admin-product-listing-top h1 {
+  font-size: 32px;
+
+  font-weight: 600;
+}
+
+/* GRID */
+
+.admin-product-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 22px;
+}
+
+/* CARD */
+
+.admin-product-card {
+  background: white;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+}
+
+/* IMAGE */
+
+.admin-product-card img {
+  width: 100%;
+
+  height: 300px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+/* CONTENT */
+
+.admin-product-content {
+  padding: 18px;
+}
+
+.admin-product-content h3 {
+  font-size: 18px;
+
+  margin-bottom: 6px;
+}
+
+.admin-product-content p {
+  font-size: 14px;
+
+  color: #777777;
+
+  margin-bottom: 10px;
+}
+
+.admin-product-content span {
+  font-size: 18px;
+
+  font-weight: 600;
+}
+
+/* ACTIONS */
+
+.admin-product-actions {
+  display: flex;
+
+  gap: 10px;
+
+  padding: 0 18px 18px;
+}
+
+.admin-product-actions button {
+  flex: 1;
+
+  height: 46px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+}
+
+.admin-product-actions button:first-child {
+  background: black;
+
+  color: white;
+}
+
+.admin-product-actions button:last-child {
+  background: #ffe7e7;
+
+  color: red;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .admin-product-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+/* SECTION TITLE */
+
+.admin-section-title {
+  font-size: 24px;
+
+  font-weight: 600;
+
+  margin-top: 20px;
+
+  margin-bottom: 6px;
+}
+
+/* VARIANTS */
+
+.admin-variants {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+/* CARD */
+
+.admin-variant-card {
+  padding: 20px;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+/* ADD */
+
+.admin-add-variant {
+  height: 54px;
+
+  border: none;
+
+  border-radius: 16px;
+
+  background: black;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+/* REMOVE */
+
+.admin-remove-variant {
+  height: 48px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: #ffe7e7;
+
+  color: red;
+
+  cursor: pointer;
+}
