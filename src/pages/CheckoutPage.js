@@ -1,22 +1,58 @@
 import {
+  useState,
+} from "react";
+
+import {
   CreditCard,
   Truck,
   ShieldCheck,
 } from "lucide-react";
 
 import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
+
+import {
+  useNavigate,
+} from "react-router-dom";
+
+import {
+  db,
+} from "../firebase/config";
+
+import {
   useCart,
 } from "../context/CartContext";
 
-import "../css/checkoutpage.css";
 import {
-  Link,
-} from "react-router-dom";
+  useAuth,
+} from "../context/AuthContext";
+
+import "../css/checkoutpage.css";
+
 export default function CheckoutPage() {
+
+  // NAVIGATE
+
+  const navigate =
+    useNavigate();
+
+  // AUTH
+
+  const { currentUser } =
+    useAuth();
+
+  // CART
 
   const {
     cartItems,
     cartTotal,
+    clearCart,
   } = useCart();
 
   // SHIPPING
@@ -31,10 +67,296 @@ export default function CheckoutPage() {
   const finalTotal =
     cartTotal + shipping;
 
+  // =========================================
+  // FORM STATES
+  // =========================================
+
+  const [fullName,
+    setFullName] =
+    useState("");
+
+  const [phone,
+    setPhone] =
+    useState("");
+
+  const [email,
+    setEmail] =
+    useState("");
+
+  const [address,
+    setAddress] =
+    useState("");
+
+  const [city,
+    setCity] =
+    useState("");
+
+  const [state,
+    setState] =
+    useState("");
+
+  const [pincode,
+    setPincode] =
+    useState("");
+
+  // PAYMENT
+
+  const [paymentMethod,
+    setPaymentMethod] =
+    useState("ONLINE");
+
+  // LOADING
+
+  const [loading,
+    setLoading] =
+    useState(false);
+
+  // =========================================
+  // PLACE ORDER
+  // =========================================
+
+  async function handlePlaceOrder() {
+
+    // VALIDATION
+
+    if (
+      !fullName ||
+      !phone ||
+      !email ||
+      !address ||
+      !city ||
+      !state ||
+      !pincode
+    ) {
+
+      alert(
+        "Please fill all fields"
+      );
+
+      return;
+    }
+
+    // EMPTY CART
+
+    if (
+      cartItems.length === 0
+    ) {
+
+      alert(
+        "Cart is empty"
+      );
+
+      return;
+    }
+
+    try {
+
+      setLoading(true);
+
+      // =====================================
+      // INVENTORY UPDATE
+      // =====================================
+
+      // =====================================
+// INVENTORY UPDATE
+// =====================================
+
+for (const item of cartItems) {
+
+  // REAL PRODUCTS DOC
+
+  const productRef =
+    doc(
+      db,
+      "products",
+      item.productId
+    );
+
+  // GET PRODUCT
+
+  const productSnap =
+    await getDoc(
+      productRef
+    );
+
+  // NOT FOUND
+
+  if (
+    !productSnap.exists()
+  ) {
+
+    continue;
+  }
+
+  const productData =
+    productSnap.data();
+
+  // VARIANTS
+
+  let updatedVariants =
+    productData.variants ||
+    [];
+
+  updatedVariants =
+    updatedVariants.map(
+      (variant) => {
+
+        // MATCH CORRECT VARIANT
+
+        if (
+
+          variant.size ===
+            item.selectedSize &&
+
+          variant.color ===
+            item.selectedColor
+
+        ) {
+
+          // REDUCE STOCK
+
+          return {
+
+            ...variant,
+
+            stock:
+              Math.max(
+                0,
+                variant.stock -
+                item.quantity
+              ),
+          };
+        }
+
+        return variant;
+      }
+    );
+
+  // UPDATE FIRESTORE
+
+  await updateDoc(
+    productRef,
+    {
+      variants:
+        updatedVariants,
+    }
+  );
+}
+
+      // =====================================
+      // CREATE ORDER
+      // =====================================
+
+      const orderData = {
+
+        // ORDER INFO
+
+        orderNumber:
+          "ORD-" +
+          Date.now(),
+
+        // USER
+
+        userId:
+          currentUser?.uid ||
+          null,
+
+        // CUSTOMER
+
+        customerName:
+          fullName,
+
+        phone,
+
+        email,
+
+        address,
+
+        city,
+
+        state,
+
+        pincode,
+
+        // PAYMENT
+
+        paymentMethod,
+
+        paymentStatus:
+          paymentMethod ===
+          "COD"
+            ? "PENDING"
+            : "PAID",
+
+        // PRODUCTS
+
+        items: cartItems,
+
+        // TOTALS
+
+        subtotal:
+          cartTotal,
+
+        shipping,
+
+        total:
+          finalTotal,
+
+        // STATUS
+
+        orderStatus:
+          "PLACED",
+
+        // DATE
+
+        createdAt:
+          serverTimestamp(),
+      };
+
+      // SAVE ORDER
+
+      await addDoc(
+        collection(
+          db,
+          "orders"
+        ),
+        orderData
+      );
+
+      // CLEAR CART
+
+      clearCart();
+
+      // SUCCESS
+
+      alert(
+        "Order Placed Successfully"
+      );
+
+      // REDIRECT
+
+      navigate("/");
+
+    } catch (error) {
+
+      console.log(error);
+
+      alert(
+        "Something went wrong"
+      );
+
+    } finally {
+
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="checkout-page">
 
-      {/* LEFT */}
+      {/* =========================================
+          LEFT
+      ========================================= */}
 
       <div className="checkout-left">
 
@@ -63,38 +385,94 @@ export default function CheckoutPage() {
 
           <div className="checkout-form-grid">
 
+            {/* FULL NAME */}
+
             <input
               type="text"
               placeholder="Full Name"
+              value={fullName}
+              onChange={(e) =>
+                setFullName(
+                  e.target.value
+                )
+              }
             />
+
+            {/* PHONE */}
 
             <input
               type="tel"
               placeholder="Phone Number"
+              value={phone}
+              onChange={(e) =>
+                setPhone(
+                  e.target.value
+                )
+              }
             />
+
+            {/* EMAIL */}
 
             <input
               type="email"
               placeholder="Email Address"
+              value={email}
+              onChange={(e) =>
+                setEmail(
+                  e.target.value
+                )
+              }
             />
+
+            {/* PINCODE */}
 
             <input
               type="text"
               placeholder="Pincode"
+              value={pincode}
+              onChange={(e) =>
+                setPincode(
+                  e.target.value
+                )
+              }
             />
+
+            {/* ADDRESS */}
 
             <textarea
               placeholder="Full Address"
+              value={address}
+              onChange={(e) =>
+                setAddress(
+                  e.target.value
+                )
+              }
             />
+
+            {/* CITY */}
 
             <input
               type="text"
               placeholder="City"
+              value={city}
+              onChange={(e) =>
+                setCity(
+                  e.target.value
+                )
+              }
             />
+
+            {/* STATE */}
 
             <input
               type="text"
               placeholder="State"
+              value={state}
+              onChange={(e) =>
+                setState(
+                  e.target.value
+                )
+              }
             />
 
           </div>
@@ -118,7 +496,15 @@ export default function CheckoutPage() {
               <input
                 type="radio"
                 name="payment"
-                defaultChecked
+                checked={
+                  paymentMethod ===
+                  "ONLINE"
+                }
+                onChange={() =>
+                  setPaymentMethod(
+                    "ONLINE"
+                  )
+                }
               />
 
               <div>
@@ -142,6 +528,15 @@ export default function CheckoutPage() {
               <input
                 type="radio"
                 name="payment"
+                checked={
+                  paymentMethod ===
+                  "COD"
+                }
+                onChange={() =>
+                  setPaymentMethod(
+                    "COD"
+                  )
+                }
               />
 
               <div>
@@ -177,7 +572,9 @@ export default function CheckoutPage() {
 
       </div>
 
-      {/* RIGHT */}
+      {/* =========================================
+          RIGHT
+      ========================================= */}
 
       <div className="checkout-right">
 
@@ -334,9 +731,15 @@ export default function CheckoutPage() {
 
           <button
             className="place-order-btn"
+            onClick={
+              handlePlaceOrder
+            }
+            disabled={loading}
           >
 
-            Place Order
+            {loading
+              ? "Processing..."
+              : "Place Order"}
 
           </button>
 

@@ -360,6 +360,14 @@
 
   color: white;
 
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-decoration: none;
+
   font-size: 15px;
 
   font-weight: 500;
@@ -367,11 +375,16 @@
   cursor: pointer;
 
   transition: 0.3s ease;
+
+  overflow: hidden;
+
+  white-space: nowrap;
 }
 
 .drawer-checkout-btn:hover {
   opacity: 0.92;
 }
+
 
 /* =========================================
    SCROLLBAR

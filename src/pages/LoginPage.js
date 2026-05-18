@@ -6,7 +6,9 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
-
+import {
+  useNavigate,
+} from "react-router-dom";
 import {
   loginUser,
   signupUser,
@@ -22,7 +24,8 @@ export default function LoginPage() {
 
   const [password, setPassword] =
     useState("");
-
+const navigate =
+  useNavigate();
   const [showPassword, setShowPassword] =
     useState(false);
 
@@ -57,8 +60,10 @@ export default function LoginPage() {
         );
 
         alert(
-          "Account Created"
-        );
+  "Account Created"
+);
+
+navigate("/");
 
       } else {
 
@@ -68,8 +73,10 @@ export default function LoginPage() {
         );
 
         alert(
-          "Logged In"
-        );
+  "Logged In"
+);
+
+navigate("/");
       }
 
     } catch (error) {
@@ -94,8 +101,10 @@ export default function LoginPage() {
       await loginWithGoogle();
 
       alert(
-        "Google Login Success"
-      );
+  "Google Login Success"
+);
+
+navigate("/");
 
     } catch (error) {
 

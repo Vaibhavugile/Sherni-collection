@@ -40,6 +40,12 @@ import ProductPage
 from "./pages/ProductPage";
 import CheckoutPage
 from "./pages/CheckoutPage";
+import MyOrdersPage
+from "./pages/MyOrdersPage";
+import AdminOrdersPage
+from "./admin/AdminOrdersPage";
+import AdminDashboard
+from "./admin/AdminDashboard";
 export default function App() {
 
   return (
@@ -156,6 +162,12 @@ export default function App() {
   }
 />
 <Route
+  path="/admin/orders"
+  element={
+    <AdminOrdersPage />
+  }
+/>
+<Route
   path="/checkout"
   element={
     <>
@@ -171,6 +183,22 @@ export default function App() {
     </>
   }
 />
+<Route
+        path="/my-orders"
+        element={
+          <>
+
+            <Navbar />
+
+            <Header />
+
+            <CategoryBar />
+
+            <MyOrdersPage />
+
+          </>
+        }
+      />
 
         {/* ======================================
             ADMIN
@@ -182,6 +210,12 @@ export default function App() {
           path="/admin/categories"
           element={<AdminPage />}
         />
+        <Route
+  path="/admin"
+  element={
+    <AdminDashboard />
+  }
+/>
 
         {/* SUBCATEGORY ADMIN */}
 

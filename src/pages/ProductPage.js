@@ -553,24 +553,37 @@ export default function ProductPage() {
             onClick={() =>
               addToCart({
 
-                ...product,
+  // PUBLIC PRODUCT
 
-                quantity,
+  ...product,
 
-                selectedVariant,
+  // REAL PRODUCTS DOC ID
 
-                price:
-                  currentPrice,
+  productId:
+    productDetails?.id,
 
-                salePrice:
-                  currentSalePrice,
+  // QUANTITY
 
-                selectedSize:
-                  selectedVariant?.size,
+  quantity,
 
-                selectedColor:
-                  selectedVariant?.color,
-              })
+  // VARIANT
+
+  selectedVariant,
+
+  selectedSize:
+    selectedVariant?.size,
+
+  selectedColor:
+    selectedVariant?.color,
+
+  // DYNAMIC PRICING
+
+  price:
+    currentPrice,
+
+  salePrice:
+    currentSalePrice,
+})
             }
           >
 

@@ -1,0 +1,181 @@
+.admin-dashboard {
+  width: 100%;
+
+  min-height: 100vh;
+
+  background: #f7f7f7;
+
+  padding: 40px;
+}
+
+/* =========================================
+   TOP
+========================================= */
+
+.admin-dashboard-top {
+  margin-bottom: 40px;
+}
+
+.admin-dashboard-top h1 {
+  font-size: 52px;
+
+  font-weight: 700;
+
+  color: #111111;
+
+  margin-bottom: 12px;
+}
+
+.admin-dashboard-top p {
+  font-size: 16px;
+
+  color: #777777;
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+.admin-dashboard-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.admin-dashboard-card {
+  background: white;
+
+  border-radius: 30px;
+
+  padding: 34px;
+
+  border: 1px solid #eeeeee;
+
+  text-decoration: none;
+
+  transition: 0.3s ease;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 24px;
+
+  min-height: 240px;
+}
+
+.admin-dashboard-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 20px 40px
+    rgba(0,0,0,0.06);
+}
+
+/* =========================================
+   ICON
+========================================= */
+
+.admin-dashboard-icon {
+  width: 72px;
+  height: 72px;
+
+  border-radius: 24px;
+
+  background: #111111;
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.admin-dashboard-card h2 {
+  font-size: 26px;
+
+  font-weight: 600;
+
+  color: #111111;
+
+  margin-bottom: 12px;
+}
+
+.admin-dashboard-card p {
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  color: #777777;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+  .admin-dashboard-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .admin-dashboard {
+    padding: 16px;
+  }
+
+  .admin-dashboard-top {
+    margin-bottom: 28px;
+  }
+
+  .admin-dashboard-top h1 {
+    font-size: 34px;
+  }
+
+  .admin-dashboard-top p {
+    font-size: 14px;
+  }
+
+  .admin-dashboard-grid {
+    grid-template-columns:
+      1fr;
+
+    gap: 18px;
+  }
+
+  .admin-dashboard-card {
+    min-height: auto;
+
+    padding: 24px;
+
+    border-radius: 24px;
+  }
+
+  .admin-dashboard-card h2 {
+    font-size: 22px;
+  }
+
+  .admin-dashboard-card p {
+    font-size: 14px;
+  }
+
+}

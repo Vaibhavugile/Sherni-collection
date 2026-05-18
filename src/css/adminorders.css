@@ -1,0 +1,702 @@
+.admin-orders-page {
+  width: 100%;
+
+  min-height: 100vh;
+
+  background: #f7f7f7;
+
+  padding: 34px;
+}
+
+/* =========================================
+   TOP
+========================================= */
+
+.admin-orders-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-bottom: 30px;
+}
+
+/* LEFT */
+
+.admin-orders-top h1 {
+  font-size: 42px;
+
+  font-weight: 600;
+
+  color: #111111;
+
+  margin-bottom: 10px;
+}
+
+.admin-orders-top p {
+  font-size: 15px;
+
+  color: #777777;
+}
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.admin-orders-search {
+  width: 340px;
+
+  height: 54px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  border: 1px solid #eeeeee;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 18px;
+}
+
+.admin-orders-search svg {
+  color: #777777;
+}
+
+.admin-orders-search input {
+  flex: 1;
+
+  border: none;
+
+  background: transparent;
+
+  outline: none;
+
+  font-size: 14px;
+}
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.admin-order-filters {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 34px;
+
+  flex-wrap: wrap;
+}
+
+.admin-order-filters button {
+  height: 42px;
+
+  padding: 0 18px;
+
+  border-radius: 999px;
+
+  border: 1px solid #dddddd;
+
+  background: white;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.admin-order-filters button:hover {
+  border-color: #111111;
+}
+
+.active-filter {
+  background: #111111 !important;
+
+  color: white;
+
+  border-color: #111111 !important;
+}
+
+/* =========================================
+   STATS
+========================================= */
+
+.admin-orders-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 22px;
+
+  margin-bottom: 34px;
+}
+
+/* CARD */
+
+.orders-stat-card {
+  background: white;
+
+  border-radius: 26px;
+
+  padding: 28px;
+
+  border: 1px solid #eeeeee;
+}
+
+.orders-stat-card h3 {
+  font-size: 14px;
+
+  font-weight: 500;
+
+  color: #777777;
+
+  margin-bottom: 18px;
+}
+
+.orders-stat-card strong {
+  font-size: 34px;
+
+  font-weight: 700;
+
+  color: #111111;
+}
+
+/* =========================================
+   LOADING
+========================================= */
+
+.admin-orders-loading {
+  width: 100%;
+
+  min-height: 50vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+
+  color: #777777;
+}
+
+/* =========================================
+   LIST
+========================================= */
+
+.admin-orders-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 28px;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.admin-order-card {
+  width: 100%;
+
+  background: white;
+
+  border-radius: 30px;
+
+  padding: 30px;
+
+  border: 1px solid #eeeeee;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.admin-order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 28px;
+
+  padding-bottom: 24px;
+
+  border-bottom:
+    1px solid #eeeeee;
+}
+
+/* LEFT */
+
+.admin-order-header h2 {
+  font-size: 24px;
+
+  font-weight: 600;
+
+  color: #111111;
+
+  margin-bottom: 8px;
+}
+
+.admin-order-header p {
+  font-size: 14px;
+
+  color: #777777;
+}
+
+/* =========================================
+   STATUS
+========================================= */
+
+.admin-order-status {
+  padding: 12px 18px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+/* PLACED */
+
+.admin-order-status.placed {
+  background: #fff5e8;
+
+  color: #e67e22;
+}
+
+/* PACKED */
+
+.admin-order-status.packed {
+  background: #f3f0ff;
+
+  color: #6c5ce7;
+}
+
+/* SHIPPED */
+
+.admin-order-status.shipped {
+  background: #edf5ff;
+
+  color: #1565c0;
+}
+
+/* DELIVERED */
+
+.admin-order-status.delivered {
+  background: #edf9f0;
+
+  color: #1b8f3a;
+}
+
+/* CANCELLED */
+
+.admin-order-status.cancelled {
+  background: #fff1f1;
+
+  color: #e53935;
+}
+
+/* =========================================
+   CUSTOMER
+========================================= */
+
+.admin-order-customer {
+  margin-bottom: 28px;
+}
+
+.admin-order-customer h3,
+.admin-order-address h3 {
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #111111;
+
+  margin-bottom: 12px;
+}
+
+.admin-order-customer p {
+  font-size: 15px;
+
+  font-weight: 500;
+
+  color: #111111;
+
+  margin-bottom: 6px;
+}
+
+.admin-order-customer span,
+.admin-order-customer small {
+  display: block;
+
+  font-size: 14px;
+
+  color: #777777;
+
+  margin-bottom: 4px;
+}
+
+/* =========================================
+   ADDRESS
+========================================= */
+
+.admin-order-address {
+  margin-bottom: 30px;
+}
+
+.admin-order-address p {
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  color: #555555;
+}
+
+/* =========================================
+   ITEMS
+========================================= */
+
+.admin-order-items {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+  margin-bottom: 30px;
+}
+
+/* ITEM */
+
+.admin-order-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+}
+
+/* IMAGE */
+
+.admin-order-item img {
+  width: 90px;
+
+  aspect-ratio: 0.72;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  background: #f5f5f5;
+}
+
+/* CONTENT */
+
+.admin-order-item-content {
+  flex: 1;
+}
+
+.admin-order-item-content h4 {
+  font-size: 16px;
+
+  font-weight: 500;
+
+  color: #111111;
+
+  line-height: 1.5;
+
+  margin-bottom: 6px;
+}
+
+.admin-order-item-content p {
+  font-size: 13px;
+
+  color: #777777;
+
+  margin-bottom: 6px;
+}
+
+.admin-order-item-content span {
+  font-size: 13px;
+
+  color: #999999;
+}
+
+/* PRICE */
+
+.admin-order-item strong {
+  font-size: 16px;
+
+  font-weight: 600;
+
+  color: #111111;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.admin-order-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-top: 24px;
+
+  border-top:
+    1px solid #eeeeee;
+
+  margin-bottom: 28px;
+}
+
+.admin-order-footer div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.admin-order-footer span {
+  font-size: 13px;
+
+  color: #777777;
+}
+
+.admin-order-footer strong {
+  font-size: 18px;
+
+  font-weight: 600;
+
+  color: #111111;
+}
+
+/* =========================================
+   PAYMENT BADGE
+========================================= */
+
+.payment-badge {
+  padding: 10px 14px;
+
+  border-radius: 999px;
+
+  font-size: 12px !important;
+
+  text-transform: uppercase;
+}
+
+.payment-badge.paid {
+  background: #edf9f0;
+
+  color: #1b8f3a;
+}
+
+.payment-badge.pending {
+  background: #fff5e8;
+
+  color: #e67e22;
+}
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.admin-order-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  flex-wrap: wrap;
+}
+
+/* BUTTON */
+
+.admin-order-actions button {
+  height: 46px;
+
+  padding: 0 18px;
+
+  border-radius: 16px;
+
+  border: none;
+
+  background: #111111;
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.admin-order-actions button:hover {
+  opacity: 0.94;
+
+  transform: translateY(-1px);
+}
+
+/* CANCEL */
+
+.cancel-order-btn {
+  background: #e53935 !important;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+  .admin-orders-stats {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .admin-orders-page {
+    padding: 14px;
+  }
+
+  /* TOP */
+
+  .admin-orders-top {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    margin-bottom: 24px;
+  }
+
+  .admin-orders-top h1 {
+    font-size: 30px;
+  }
+
+  /* SEARCH */
+
+  .admin-orders-search {
+    width: 100%;
+  }
+
+  /* STATS */
+
+  .admin-orders-stats {
+    grid-template-columns:
+      1fr;
+
+    gap: 16px;
+  }
+
+  .orders-stat-card {
+    padding: 22px;
+
+    border-radius: 22px;
+  }
+
+  .orders-stat-card strong {
+    font-size: 28px;
+  }
+
+  /* CARD */
+
+  .admin-order-card {
+    padding: 22px;
+
+    border-radius: 24px;
+  }
+
+  /* HEADER */
+
+  .admin-order-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 16px;
+  }
+
+  .admin-order-header h2 {
+    font-size: 18px;
+  }
+
+  /* ITEM */
+
+  .admin-order-item {
+    gap: 12px;
+  }
+
+  .admin-order-item img {
+    width: 70px;
+
+    border-radius: 14px;
+  }
+
+  .admin-order-item-content h4 {
+    font-size: 14px;
+  }
+
+  .admin-order-item-content p,
+  .admin-order-item-content span {
+    font-size: 12px;
+  }
+
+  .admin-order-item strong {
+    font-size: 14px;
+  }
+
+  /* FOOTER */
+
+  .admin-order-footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 18px;
+  }
+
+  /* ACTIONS */
+
+  .admin-order-actions {
+    gap: 10px;
+  }
+
+  .admin-order-actions button {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+}

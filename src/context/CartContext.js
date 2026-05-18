@@ -12,9 +12,12 @@ export function CartProvider({
   children,
 }) {
 
-  // CART ITEMS
+  /* =========================================
+     CART ITEMS
+  ========================================= */
 
-  const [cartItems, setCartItems] =
+  const [cartItems,
+    setCartItems] =
     useState(() => {
 
       const saved =
@@ -27,12 +30,17 @@ export function CartProvider({
         : [];
     });
 
-  // CART DRAWER
+  /* =========================================
+     CART DRAWER
+  ========================================= */
 
-  const [isCartOpen, setIsCartOpen] =
+  const [isCartOpen,
+    setIsCartOpen] =
     useState(false);
 
-  // SAVE LOCAL STORAGE
+  /* =========================================
+     SAVE LOCAL STORAGE
+  ========================================= */
 
   useEffect(() => {
 
@@ -44,64 +52,125 @@ export function CartProvider({
   }, [cartItems]);
 
   /* =========================================
+     GENERATE UNIQUE CART KEY
+  ========================================= */
+
+  function generateCartKey(
+    product
+  ) {
+
+    return `${product.id}-${
+      product.selectedSize || ""
+    }-${
+      product.selectedColor || ""
+    }`;
+  }
+
+  /* =========================================
      ADD TO CART
   ========================================= */
 
   function addToCart(product) {
 
+    const cartKey =
+      generateCartKey(
+        product
+      );
+
+    // FIND EXISTING
+
     const exists =
       cartItems.find(
         (item) =>
-          item.id === product.id
+          item.cartKey ===
+          cartKey
       );
 
+    // =====================================
     // PRODUCT EXISTS
+    // =====================================
 
     if (exists) {
 
       setCartItems((prev) =>
-        prev.map((item) =>
 
-          item.id === product.id
-            ? {
-                ...item,
+        prev.map((item) => {
 
-                quantity:
-                  item.quantity + 1,
-              }
-            : item
-        )
+          // MATCH ITEM
+
+          if (
+            item.cartKey ===
+            cartKey
+          ) {
+
+            // STOCK LIMIT
+
+            const maxStock =
+              item.selectedVariant
+                ?.stock || 999;
+
+            const newQty =
+              Math.min(
+                item.quantity + (
+                  product.quantity || 1
+                ),
+                maxStock
+              );
+
+            return {
+
+              ...item,
+
+              quantity:
+                newQty,
+            };
+          }
+
+          return item;
+        })
       );
 
     } else {
 
+      // =====================================
       // NEW PRODUCT
+      // =====================================
 
       setCartItems((prev) => [
+
         ...prev,
 
         {
+
           ...product,
 
-          quantity: 1,
+          cartKey,
+
+          quantity:
+            product.quantity || 1,
         },
       ]);
     }
 
-    // OPEN CART DRAWER
+    // OPEN DRAWER
 
     setIsCartOpen(true);
   }
 
   /* =========================================
-     REMOVE FROM CART
+     REMOVE ITEM
   ========================================= */
 
-  function removeFromCart(id) {
+  function removeFromCart(
+    cartKey
+  ) {
 
     setCartItems((prev) =>
+
       prev.filter(
-        (item) => item.id !== id
+        (item) =>
+          item.cartKey !==
+          cartKey
       )
     );
   }
@@ -110,20 +179,39 @@ export function CartProvider({
      INCREASE QUANTITY
   ========================================= */
 
-  function increaseQuantity(id) {
+  function increaseQuantity(
+    cartKey
+  ) {
 
     setCartItems((prev) =>
-      prev.map((item) =>
 
-        item.id === id
-          ? {
-              ...item,
+      prev.map((item) => {
 
-              quantity:
-                item.quantity + 1,
-            }
-          : item
-      )
+        if (
+          item.cartKey !==
+          cartKey
+        ) {
+
+          return item;
+        }
+
+        // MAX STOCK
+
+        const maxStock =
+          item.selectedVariant
+            ?.stock || 999;
+
+        return {
+
+          ...item,
+
+          quantity:
+            Math.min(
+              item.quantity + 1,
+              maxStock
+            ),
+        };
+      })
     );
   }
 
@@ -131,22 +219,32 @@ export function CartProvider({
      DECREASE QUANTITY
   ========================================= */
 
-  function decreaseQuantity(id) {
+  function decreaseQuantity(
+    cartKey
+  ) {
 
     setCartItems((prev) =>
 
       prev
-        .map((item) =>
+        .map((item) => {
 
-          item.id === id
-            ? {
-                ...item,
+          if (
+            item.cartKey !==
+            cartKey
+          ) {
 
-                quantity:
-                  item.quantity - 1,
-              }
-            : item
-        )
+            return item;
+          }
+
+          return {
+
+            ...item,
+
+            quantity:
+              item.quantity - 1,
+          };
+        })
+
         .filter(
           (item) =>
             item.quantity > 0
@@ -164,6 +262,20 @@ export function CartProvider({
   }
 
   /* =========================================
+     GET ITEM SUBTOTAL
+  ========================================= */
+
+  function getItemSubtotal(
+    item
+  ) {
+
+    return (
+      item.price *
+      item.quantity
+    );
+  }
+
+  /* =========================================
      TOTAL ITEMS
   ========================================= */
 
@@ -171,7 +283,8 @@ export function CartProvider({
     cartItems.reduce(
       (total, item) =>
 
-        total + item.quantity,
+        total +
+        item.quantity,
 
       0
     );
@@ -185,11 +298,16 @@ export function CartProvider({
       (total, item) =>
 
         total +
-        item.price *
-          item.quantity,
+        getItemSubtotal(
+          item
+        ),
 
       0
     );
+
+  /* =========================================
+     CONTEXT VALUE
+  ========================================= */
 
   return (
     <CartContext.Provider
@@ -203,13 +321,11 @@ export function CartProvider({
 
         cartTotal,
 
-        // DRAWER
-
         isCartOpen,
 
-        setIsCartOpen,
-
         // FUNCTIONS
+
+        setIsCartOpen,
 
         addToCart,
 
@@ -220,6 +336,8 @@ export function CartProvider({
         decreaseQuantity,
 
         clearCart,
+
+        getItemSubtotal,
       }}
     >
 
@@ -228,6 +346,10 @@ export function CartProvider({
     </CartContext.Provider>
   );
 }
+
+/* =========================================
+   HOOK
+========================================= */
 
 export function useCart() {
 

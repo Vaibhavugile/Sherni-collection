@@ -31,13 +31,16 @@ export default function Header() {
 
   // AUTH
 
-  const { currentUser } =
-    useAuth();
+  const {
+    currentUser,
+  } = useAuth();
 
   // CART
 
-  const { cartCount } =
-    useCart();
+  const {
+    cartCount,
+    setIsCartOpen,
+  } = useCart();
 
   // WISHLIST
 
@@ -48,7 +51,9 @@ export default function Header() {
   return (
     <header className="header">
 
-      {/* LEFT */}
+      {/* =========================================
+          LEFT
+      ========================================= */}
 
       <div className="header-left">
 
@@ -70,7 +75,9 @@ export default function Header() {
 
       </div>
 
-      {/* CENTER LOGO */}
+      {/* =========================================
+          CENTER
+      ========================================= */}
 
       <Link
         to="/"
@@ -84,40 +91,83 @@ export default function Header() {
 
       </Link>
 
-      {/* RIGHT */}
+      {/* =========================================
+          RIGHT
+      ========================================= */}
 
       <div className="header-right">
 
-        {/* LOGIN / ACCOUNT */}
+        {/* ACCOUNT */}
 
-       {currentUser ? (
+        {currentUser ? (
 
-  <Link
-    to="/account"
-    className="header-icon"
-  >
+          <div className="header-account-menu">
 
-    <User
-      size={22}
-      strokeWidth={1.8}
-    />
+            {/* ICON */}
 
-  </Link>
+            <button className="header-user-btn">
 
-) : (
+              <User
+                size={22}
+                strokeWidth={1.8}
+              />
 
-  <Link
-    to="/login"
-    className="header-login"
-  >
+            </button>
 
-    Login
+            {/* DROPDOWN */}
 
-  </Link>
+            <div className="account-dropdown">
 
-)}
+              {/* USER */}
 
-        {/* WISHLIST */}
+              <div className="account-user-info">
+
+                <h4>
+
+                  {
+                    currentUser?.email
+                  }
+
+                </h4>
+
+              </div>
+
+              {/* ORDERS */}
+
+              <Link to="/my-orders">
+
+                My Orders
+
+              </Link>
+
+              {/* WISHLIST */}
+
+              <Link to="/wishlist">
+
+                Wishlist
+
+              </Link>
+
+            </div>
+
+          </div>
+
+        ) : (
+
+          <Link
+            to="/login"
+            className="header-login-btn"
+          >
+
+            Login
+
+          </Link>
+
+        )}
+
+        {/* =========================================
+            WISHLIST
+        ========================================= */}
 
         <Link
           to="/wishlist"
@@ -129,26 +179,25 @@ export default function Header() {
             strokeWidth={1.8}
           />
 
-          {wishlistItems.length >
-            0 && (
+          <span>
 
-            <span>
+            {
+              wishlistItems.length
+            }
 
-              {
-                wishlistItems.length
-              }
-
-            </span>
-
-          )}
+          </span>
 
         </Link>
 
-        {/* CART */}
+        {/* =========================================
+            CART
+        ========================================= */}
 
-        <Link
-          to="/cart"
+        <button
           className="header-icon"
+          onClick={() =>
+            setIsCartOpen(true)
+          }
         >
 
           <ShoppingBag
@@ -156,15 +205,13 @@ export default function Header() {
             strokeWidth={1.8}
           />
 
-          {cartCount > 0 && (
+          <span>
 
-            <span>
-              {cartCount}
-            </span>
+            {cartCount}
 
-          )}
+          </span>
 
-        </Link>
+        </button>
 
       </div>
 
